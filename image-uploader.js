@@ -5,6 +5,7 @@ class ImageUploader {
       icon: 'fa-image',
       width: '180px',
       height: '180px',
+      color: '#b2dcc8',
       format: null,
       size: null,
       ratio: null,  
@@ -27,7 +28,7 @@ class ImageUploader {
 
   render() {
     const id = `${this.$input.attr('name')}-image-uploader`;
-    this.$label = $(`<label for="${id}" class="image-uploader-preview"><i class="fa ${this.config.icon} image-uploader-icon"></i><span>${this.config.placeholder}</span></label>`),
+    this.$label = $(`<label for="${id}" class="image-uploader-preview"><div class="image-uploader-icon"><i class="fa ${this.config.icon}"></i></div><span>${this.config.placeholder}</span></label>`),
     this.$preview = $(`<div class="image-uploader-preview" data-for="${id}"></div>`),
     this.$delete = $(`<button type="button" class="btn btn-sm btn-primary image-uploader-delete" data-for="${id}"><i class="fa fa-times"></i></button>`);
 
@@ -187,7 +188,6 @@ class ImageUploader {
       width: this.config.width,
       height: this.config.height,
       border: '1px solid #CCC',
-      color: '#DDD',
       margin: '0 10px 10px 0',
       position: 'relative',
     });
@@ -200,6 +200,7 @@ class ImageUploader {
       top: 0,
       left: 0,
       display: 'flex',
+      color: this.config.color,
       flexDirection: 'column',
       alignItems: 'center', 
       justifyContent: 'center',
@@ -209,9 +210,13 @@ class ImageUploader {
     this.$label.find('.image-uploader-icon').css({
       position: 'relative',
       fontSize: '22px',
-      display: 'block',
+      display: 'flex',
       marginBottom: '5%',
       borderRadius: '50% 50%',
+      width: '55px', 
+      height: '55px',
+      alignItems: 'center',
+      justifyContent: 'center',
       border: '1px solid #DDD',
       padding: '15px',
     });
@@ -241,7 +246,7 @@ class ImageUploader {
 
 $.fn.imageUploader = function(config) {
   $.each(this, (i, el) => {
-    const setting = ['width', 'height', 'icon', 'size', 'ratio', 'format'],
+    const setting = ['width', 'height', 'icon', 'size', 'ratio', 'format', 'color'],
           type = $(el).attr('type');
     let dataConfig = {
       input: `[name="${$(el).attr('name')}"]`,
