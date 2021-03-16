@@ -65,7 +65,7 @@ class ImageUploader {
       if (this.config.ratio) {
         checkRatio()
           .then(() => {
-            this.previewAndWrite.bind(this, file);
+            this.previewAndWrite(file);
           })
           .catch(() => {
             this.error(`長寬比例不符(${this.config.ratio[0]}:${this.config.ratio[1]})，請檢查後重新上傳`);
