@@ -49,6 +49,10 @@
 | ratio | String | null | 檢驗圖片的長寬比例，需傳入兩個數字，並以逗號分隔，範例：350,200 |
 | placeholder | String | null | 顯示於上傳區塊的文字 |
 
+# Update Log
+
+#### 2021/04/04
+更新接收 input 預設 value 並產生預覽圖
 
 
 
