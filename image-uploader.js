@@ -18,6 +18,7 @@ class ImageUploader {
       return false;
     }
     this.config.format = (this.config.format)?this.config.format.replace(/\s/g, '').split(','):null;
+
     this.config.ratio = (this.config.ratio)?this.config.ratio.replace(/\s/g, '').split(','):null;
     this.init();
   }
@@ -32,8 +33,8 @@ class ImageUploader {
     this.$preview = $(`<div class="image-uploader-preview" data-for="${id}"></div>`),
     this.$delete = $(`<button type="button" class="btn btn-sm btn-primary image-uploader-delete" data-for="${id}"><i class="fa fa-times"></i></button>`);
 
-    this.$container = $(`<div class="image-uploader-unit">`),
-    this.$file = $(`<input type="file" id="${id}" accept="image/*" style="display: none;">`),
+    this.$container = $(`<div class="image-uploader-unit">`);
+    this.$file = $(`<input type="file" id="${id}" accept="image/*" style="display: none;">`);
     this.styling();
 
     //Create uploader UI 
@@ -41,6 +42,21 @@ class ImageUploader {
     this.$preview.appendTo(this.$container);
     this.$label.appendTo(this.$container);
     this.$container.insertBefore(this.$input);
+
+    //Create default image
+    if (this.$input.val() !== '') {
+      this.$delete.show();
+      this.$preview.css({
+          zIndex: 1,
+          pointerEvents: 'unset',
+          background: '#F2F2F2',
+        });
+      $(`<img src="${this.$input.val()}">`).css({
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+      }).appendTo(this.$preview);
+    }
 
     //Leave the file input away from form
     this.$file.appendTo($('body'));
